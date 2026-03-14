@@ -1,0 +1,28 @@
+{
+  "agents": {
+    "main": {
+      "displayName": "Jansky",
+      "model": "kimi-k2.5",
+      "provider": "moonshot",
+      "role": "Boss/orchestrator",
+      "ttsVoice": "onyx",
+      "thinking": "low"
+    },
+    "claw-1": {
+      "displayName": "Orbit",
+      "model": "minimax-m2.5",
+      "provider": "openrouter",
+      "role": "Coding/tasks",
+      "ttsVoice": "echo",
+      "thinking": "off"
+    },
+    "claw-2": {
+      "displayName": "Nova",
+      "model": "minimax-m2.5",
+      "provider": "openrouter",
+      "role": "Research/web",
+      "ttsVoice": "fable",
+      "thinking": "off"
+    }
+  }
+}

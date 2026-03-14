@@ -1,0 +1,8 @@
+node_modules/
+.env
+server/.env
+CLAUDE.md
+.claude/
+video-plan*.md
+server/cert.pem
+server/key.pem
