@@ -1,9 +1,16 @@
-# OpenClaw Command Center
+# OpenClaw Command Center (Secure Version)
 
 ![OpenClaw Command Center](public/openclaw_command_center.png)
 A web-based AI command center featuring a pixel art office with 3 AI agents, voice interaction, and real-time system monitoring. Built for Raspberry Pi 5 + 7" touchscreen, but runs anywhere with Node.js.
 
+This **Secure Version (v2.0)** includes API key authentication, rate limiting, and robust WebSocket security. See [SECURITY.md](SECURITY.md) for full details.
 
+## Security Features
+
+- **API Key Authentication** - All endpoints require a valid API key.
+- **Rate Limiting** - Prevents abuse and DoS attacks.
+- **Security Headers & CORS** - Helmet and configurable origins.
+- **WebSocket Auth** - Session-based secure WebSockets.
 
 ## Quick Start
 
@@ -12,11 +19,13 @@ git clone <this-repo>
 cd openclaw-command-center
 npm install
 cp .env.example .env
+# Generate an API key: openssl rand -hex 32
+# Edit .env and set API_KEYS=your-generated-key
 npm start
 # Open http://localhost:3000
 ```
 
-That's it. With zero config, the app runs in **demo mode** — full UI with simulated agent activity, no gateway or API keys needed.
+That's it. With zero config, the app runs in **demo mode** — full UI with simulated agent activity, no gateway needed. *(Note: You must set an API key to access the UI).*
 
 ## What You'll See
 
@@ -81,11 +90,14 @@ See `.env.example` for the full template.
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `PORT` | `3000` | Server port |
+| `API_KEYS` | — | **Required** Comma-separated list of valid API keys |
 | `DEMO_MODE` | `true` | `true` = no gateway needed. `false` = connects to OpenClaw gateway |
 | `GATEWAY_URL` | `ws://127.0.0.1:18789` | OpenClaw gateway WebSocket URL |
 | `GATEWAY_TOKEN` | — | Gateway auth token (required when `DEMO_MODE=false`) |
 | `OPENAI_API_KEY` | — | Enables Whisper STT + TTS voice features |
 | `WEATHER_LOCATION` | `Kingston,Ontario,Canada` | City,Region,Country for the weather widget (via wttr.in) |
+| `TRUST_PROXY` | `false` | Set to true when running behind a reverse proxy |
+| `CORS_ORIGINS` | `*` | Comma-separated list of allowed CORS origins |
 
 ## Agent Configuration
 
